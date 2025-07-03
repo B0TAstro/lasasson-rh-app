@@ -4,6 +4,14 @@
   outline: 1px solid red;
 } */
 
+/* Global styles */
+:root {
+  --color-primary: #FFCA22;
+  --color-primary-contrast: #FFDD70;
+  --color-secondary: #28B04E;
+  --grey: #D9D9D9;
+}
+
 @font-face {
   font-family: 'Helvetica Neue';
   src: url('../../public/fonts/HelveticaNeue.woff2') format('woff2'),
@@ -133,4 +141,31 @@
 /* Set font globally */
 html {
   font-family: 'Helvetica Neue', sans-serif;
+}
+
+strong {
+  font-weight: 600;
+}
+
+/* SecondaryNav styles */
+@keyframes bounce-up-icon {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(-2px); }
+  60% { transform: translateY(1px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes bounce-down-text {
+  0% { transform: translateY(0); }
+  30% { transform: translateY(2px); }
+  60% { transform: translateY(-1px); }
+  100% { transform: translateY(0); }
+}
+
+.animate-bounce-up-icon {
+  animation: bounce-up-icon 0.3s ease-in-out;
+}
+
+.animate-bounce-down-text {
+  animation: bounce-down-text 0.3s ease-in-out;
 }
