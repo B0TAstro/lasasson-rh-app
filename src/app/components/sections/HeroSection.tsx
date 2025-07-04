@@ -31,12 +31,6 @@ const HeroSection: React.FC = () => {
 
     return (
         <section id="section-1" className="mt-20 mb-18 px-5 md:px-10 lg:px-16">
-            <div className="text-center mb-18">
-                <h1 className="text-2xl font-bold">
-                    Informations RH
-                </h1>
-            </div>
-
             <div className="mb-6">
                 <h2 className="font-semibold mb-3">
                     <span className="inline-block">👋</span> Bienvenue sur l'espace RH en ligne de La Sasson

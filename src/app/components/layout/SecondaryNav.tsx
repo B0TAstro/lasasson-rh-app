@@ -110,7 +110,7 @@ export default function SecondaryNav() {
 
   return (
     <div className="fixed w-full bottom-0 z-10">
-      <div className="w-full h-[55px] flex-shrink-0 bg-white" />
+      <div className="w-full h-[55px] flex-shrink-0 bg-white/10 backdrop-blur-[17.5px]" />
       <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-15 bg-white rounded-xl px-5 py-2 gap-9 flex items-center justify-center shadow-[1px_3px_6px_rgba(0,0,0,0.25)]">
         <Button id="prev" />
         <Button id="home" />
