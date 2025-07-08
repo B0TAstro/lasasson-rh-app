@@ -11,8 +11,8 @@ const icons = {
   next: ArrowRight,
 };
 
-const TOTAL_SECTIONS = 8;
-const INITIAL_SECTION = 1;
+const TOTAL_SECTIONS = 9;
+const INITIAL_SECTION = 0;
 
 export default function SecondaryNav() {
   const [currentSection, setCurrentSection] = useState(INITIAL_SECTION);
