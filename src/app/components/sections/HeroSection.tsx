@@ -14,12 +14,12 @@ import {
 
 const HeroSection: React.FC = () => {
     const quickAccessButtons = [
-        { label: 'Règles Internes', icon: FileText, color: 'bg-blue-600', section: 2 },
-        { label: 'Documents', icon: Book, color: 'bg-green-600', section: 3 },
-        { label: 'Équipes', icon: Users, color: 'bg-purple-600', section: 4 },
-        { label: 'Absences & Congés', icon: Calendar, color: 'bg-red-600', section: 5 },
-        { label: 'Formations', icon: Clipboard, color: 'bg-indigo-600', section: 6 },
-        { label: 'Instances Représentatives', icon: Briefcase, color: 'bg-orange-600', section: 7 },
+        { label: 'Règles Internes', icon: FileText, section: 2 },
+        { label: 'Documents', icon: Book, section: 3 },
+        { label: 'Organigramme', icon: Users, section: 4 },
+        { label: 'Absences & Congés', icon: Calendar, section: 5 },
+        { label: 'Formations', icon: Clipboard, section: 6 },
+        { label: 'Instances Représentatives', icon: Briefcase, section: 7 },
     ];
 
     const scrollToSection = (sectionId: number) => {
@@ -30,7 +30,7 @@ const HeroSection: React.FC = () => {
     };
 
     return (
-        <section id="section-1" className="pt-45 mb-18 px-5 md:px-10 lg:px-16">
+        <section id="section-0" className="pt-45 px-5 md:px-10 lg:px-16">
             <div className="mb-6">
                 <h2 className="font-semibold mb-3">
                     <span className="inline-block">👋</span> Bienvenue sur l'espace RH en ligne de La Sasson
@@ -47,47 +47,49 @@ const HeroSection: React.FC = () => {
 
                 <ul className="text-sm font-light space-y-2 list-none">
                     <li className="flex items-start gap-2">
-                        <div className="w-1 h-1 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
                         <span><strong>Accéder aux documents RH :</strong> règlements, conventions collectives, accords d'entreprise...</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <div className="w-1 h-1 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
                         <span><strong>Consulter l'organigramme</strong> et contacter rapidement les bonnes personnes</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <div className="w-1 h-1 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
                         <span><strong>Gérer vos absences et congés :</strong> comprendre les règles et télécharger les formulaires nécessaires</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <div className="w-1 h-1 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
                         <span><strong>S'informer sur les formations :</strong> opportunités de formation et démarches</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <div className="w-1 h-1 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
                         <span><strong>Consulter l'annuaire du personnel :</strong> avec recherche par service ou fonction</span>
                     </li>
                     <li className="flex items-start gap-2">
-                        <div className="w-1 h-1 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
                         <span><strong>Obtenir des réponses immédiates</strong> grâce à une FAQ</span>
                     </li>
                 </ul>
             </div>
 
             <div>
-                <h3 className="font-semibold text-lg mb-4 text-center">
+                <h3 className="font-semibold text-xl mb-6 text-center text-gray-800">
                     Accès rapide aux sections principales
                 </h3>
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">
                     {quickAccessButtons.map((button, index) => {
                         const Icon = button.icon;
                         return (
-                            <button
+                            <button 
                                 key={index}
                                 onClick={() => scrollToSection(button.section)}
-                                className={`${button.color} text-white p-3 sm:p-4 rounded-lg flex flex-col items-center justify-center gap-1 hover:scale-105 active:scale-95 transition-transform focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white`}
+                                className="group relative bg-white hover:bg-gradient-to-br hover:from-[#FFCA22] hover:to-[#FFDD70] text-black hover:text-white py-3 rounded-2xl border border-gray-200 hover:border-transparent flex flex-col items-center justify-center gap-2 transition-all duration-300 ease-out hover:scale-[1.01] active:scale-95 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#FFCA22] focus:ring-offset-2"
                             >
-                                <Icon size={20} />
-                                <span className="text-[10px] sm:text-xs font-medium text-center leading-tight">
+                                <div className="p-3 rounded-lg bg-gray-50 group-hover:bg-white/20 transition-colors duration-300">
+                                    <Icon size={24}/>
+                                </div>
+                                <span className="text-xs font-medium text-center">
                                     {button.label}
                                 </span>
                             </button>

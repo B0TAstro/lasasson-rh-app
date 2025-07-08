@@ -6,6 +6,17 @@ import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
 import { X, Menu, MapPin, Users, BookOpen, Briefcase, Folder, HelpCircle, Calendar, UserCheck } from 'react-feather'
 
+const desktopSections = [
+  { label: 'Intro', href: '#section-1' },
+  { label: 'Règles Internes', href: '#section-2' },
+  { label: 'Documents', href: '#section-3' },
+  { label: 'Organigramme', href: '#section-4' },
+  { label: 'Absences', href: '#section-5' },
+  { label: 'Formations', href: '#section-6' },
+  { label: 'IRP', href: '#section-7' },
+  { label: 'FAQ', href: '#section-8' }
+]
+
 const sections = [
   { label: 'Introduction', icon: <MapPin />, href: '#section-1' },
   { label: 'Cadre Juridique', icon: <Briefcase />, href: '#section-2' },
@@ -149,12 +160,9 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navbar */}
-        {/* Desktop Navbar */}
-        <div className="hidden lg:block relative h-[80px]">
-          {/* Logo centré qui s'envole */}
+        <div className="hidden lg:block relative px-16 pb-4">
           <div
-            className={`absolute top-5 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-8' : 'opacity-100 translate-y-0'
-              }`}
+            className={`absolute top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-8' : 'opacity-100 translate-y-0'}`}
           >
             <Image
               src="/image/logo-sasson.png"
@@ -165,10 +173,8 @@ export default function Navbar() {
             />
           </div>
 
-          {/* Titre + navigation */}
           <div
-            className={`absolute inset-0 flex items-center justify-between px-16 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
-              }`}
+            className={`flex items-center justify-between transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
           >
             <h1
               className="text-xl"
@@ -176,13 +182,12 @@ export default function Navbar() {
             >
               <a href="#top">Informations RH</a>
             </h1>
-
-            <nav className="flex gap-6 text-sm font-medium">
-              {sections.map(({ label, href }) => (
+            <nav className="flex gap-5 text-sm font-medium">
+              {desktopSections.map(({ label, href }) => (
                 <a
                   key={href}
                   href={href}
-                  className="text-gray-600 hover:text-[var(--color-primary)] transition-colors"
+                  className="text-black hover:text-[var(--color-primary)] transition-colors"
                 >
                   {label}
                 </a>
