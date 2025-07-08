@@ -141,6 +141,7 @@
 /* Set font globally */
 html {
   font-family: 'Helvetica Neue', sans-serif;
+  scroll-behavior: smooth;
 }
 
 strong {
@@ -149,17 +150,39 @@ strong {
 
 /* SecondaryNav styles */
 @keyframes bounce-up-icon {
-  0% { transform: translateY(0); }
-  30% { transform: translateY(-2px); }
-  60% { transform: translateY(1px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(-2px);
+  }
+
+  60% {
+    transform: translateY(1px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes bounce-down-text {
-  0% { transform: translateY(0); }
-  30% { transform: translateY(2px); }
-  60% { transform: translateY(-1px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+
+  30% {
+    transform: translateY(2px);
+  }
+
+  60% {
+    transform: translateY(-1px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
 }
 
 .animate-bounce-up-icon {

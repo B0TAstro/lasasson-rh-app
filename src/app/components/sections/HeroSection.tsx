@@ -30,7 +30,7 @@ const HeroSection: React.FC = () => {
     };
 
     return (
-        <section id="section-1" className="mt-20 mb-18 px-5 md:px-10 lg:px-16">
+        <section id="section-1" className="pt-45 mb-18 px-5 md:px-10 lg:px-16">
             <div className="mb-6">
                 <h2 className="font-semibold mb-3">
                     <span className="inline-block">👋</span> Bienvenue sur l'espace RH en ligne de La Sasson
@@ -45,7 +45,7 @@ const HeroSection: React.FC = () => {
                     À quoi sert cet outil ?
                 </h3>
 
-                <ul className="text-sm font-light space-y-3 list-none">
+                <ul className="text-sm font-light space-y-2 list-none">
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-yellow-400 rounded-full mt-2 flex-shrink-0"></div>
                         <span><strong>Accéder aux documents RH :</strong> règlements, conventions collectives, accords d'entreprise...</span>
