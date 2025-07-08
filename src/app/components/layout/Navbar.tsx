@@ -68,7 +68,8 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-11 pt-5 pb-1 bg-white/10 backdrop-blur-[17.5px]">
-        <div className="relative flex items-center justify-between text-black">
+        {/* Mobile Navbar */}
+        <div className="relative flex items-center justify-between text-black lg:hidden">
           <div className="absolute z-10 top-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center transition-all duration-500">
             <Image
               src="/image/logo-sasson.png"
@@ -96,15 +97,14 @@ export default function Navbar() {
 
         <div
           ref={menuRef}
-          className={`absolute w-screen h-screen inset-0 z-50 pt-7 transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'} ease-in-out`}
+          className={`absolute w-screen h-screen inset-0 z-50 pt-8 transition-transform duration-500 ${isOpen ? 'translate-x-0' : 'translate-x-full'} ease-in-out lg:hidden`}
           style={{ background: 'linear-gradient(186deg, #FFCA22 -0.96%, #943E01 98.97%)' }}
         >
-
           <div className="flex justify-center items-center">
-            <h2 className="text-xl font-semibold text-black"
+            <p className="text-xl font-semibold text-black"
               style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
               Table des matières
-            </h2>
+            </p>
           </div>
 
           <div className="flex h-screen mt-10">
@@ -145,6 +145,49 @@ export default function Navbar() {
                 ))}
               </nav>
             </div>
+          </div>
+        </div>
+
+        {/* Desktop Navbar */}
+        {/* Desktop Navbar */}
+        <div className="hidden lg:block relative h-[80px]">
+          {/* Logo centré qui s'envole */}
+          <div
+            className={`absolute top-5 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-8' : 'opacity-100 translate-y-0'
+              }`}
+          >
+            <Image
+              src="/image/logo-sasson.png"
+              alt="Logo La Sasson"
+              width={180}
+              height={50}
+              className="h-12 w-auto"
+            />
+          </div>
+
+          {/* Titre + navigation */}
+          <div
+            className={`absolute inset-0 flex items-center justify-between px-16 transition-all duration-500 ${isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+              }`}
+          >
+            <h1
+              className="text-xl"
+              style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}
+            >
+              <a href="#top">Informations RH</a>
+            </h1>
+
+            <nav className="flex gap-6 text-sm font-medium">
+              {sections.map(({ label, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  className="text-gray-600 hover:text-[var(--color-primary)] transition-colors"
+                >
+                  {label}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
       </header>
