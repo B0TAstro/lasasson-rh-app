@@ -1,7 +1,5 @@
 // app/components/layout/SecondaryNav.tsx
 
-// app/components/layout/SecondaryNav.tsx
-
 'use client';
 
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
