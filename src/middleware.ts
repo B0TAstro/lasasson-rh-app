@@ -22,9 +22,9 @@ export async function middleware(request: NextRequest) {
   const url = request.nextUrl
   const auth = request.cookies.get('rh-auth')
 
-  if (process.env.NODE_ENV === 'development') {
-    return NextResponse.next()
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   return NextResponse.next()
+  // }
 
   const config = await getCachedSecurityConfig()
 

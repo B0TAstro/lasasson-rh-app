@@ -71,9 +71,9 @@ export default function PasswordPage() {
                     setStatus(prev => ({
                         ...prev,
                         isLocked: true,
-                        remainingTime: data.remainingHours
+                        remainingTime: data.lockoutDuration
                     }));
-                    setError(`Accès bloqué pendant encore ${data.remainingHours}h`);
+                    setError(`Accès bloqué pendant encore ${data.lockoutDuration}h`);
                     return;
                 }
                 setStatus(prev => ({
