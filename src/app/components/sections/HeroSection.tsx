@@ -74,7 +74,7 @@ const HeroSection: React.FC = () => {
             </div>
 
             <div>
-                <h3 className="font-semibold text-xl mb-6 text-center text-gray-800">
+                <h3 className="font-semibold mb-6 text-center text-gray-800">
                     Accès rapide aux sections principales
                 </h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5">

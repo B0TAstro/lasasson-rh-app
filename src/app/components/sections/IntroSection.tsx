@@ -11,26 +11,41 @@ export default async function IntroSection() {
     // console.log('Introduction Data:', introData)
     return (
         <section id="section-1" className="pt-19 px-5 md:px-10 lg:px-16">
-            <div className="max-w-3xl mx-auto space-y-12">
-                <h1 className="text-3xl font-bold">{introData.title}</h1>
+            <h2 className="text-[18px] font-medium underline">{introData.title}</h2>
 
-                {/* Mot du président */}
-                <div className="space-y-4">
-                    <h2 className="text-2xl font-semibold">{introData.presidentMessage.title}</h2>
+            <div className="mt-6">
+                <p className="font-medium">{introData.presidentMessage.title}</p>
+                <div className="mt-4 text-sm font-light space-y-4">
                     <PortableText value={introData.presidentMessage.message} />
-                    <p className="font-medium">{introData.presidentMessage.signature}</p>
                 </div>
+                <p className="text-right mt-4 text-sm font-normal">{introData.presidentMessage.signature}</p>
+            </div>
 
-                {/* Présentation */}
-                <div className="space-y-8">
-                    <h2 className="text-2xl font-semibold">{introData.presentation.title}</h2>
-                    {introData.presentation.items.map((item, idx) => (
-                        <div key={idx} className="space-y-2">
-                            <h3 className="text-xl font-semibold">{item.title}</h3>
-                            <PortableText value={item.content} />
+            <div className="mt-6">
+                <h3 className="font-medium">{introData.presentation.title}</h3>
+                {introData.presentation.items.map((item, idx) => (
+                    <div key={idx} className="mt-6">
+                        <h4 className="text-[15px] underline font-normal ml-6">{item.title}</h4>
+                        <div className="mt-2 text-sm font-light space-y-2">
+                            <PortableText
+                                value={item.content}
+                                components={{
+                                    block: {
+                                        normal: ({ children }) => <p>{children}</p>
+                                    },
+                                    list: {
+                                        bullet: ({ children }) => <ul className="list-disc list-inside ml-2">{children}</ul>,
+                                        number: ({ children }) => <ol className="list-decimal list-inside ml-2">{children}</ol>,
+                                    },
+                                    listItem: {
+                                        bullet: ({ children }) => <li className="ml-2">{children}</li>,
+                                        number: ({ children }) => <li className="ml-2">{children}</li>,
+                                    }
+                                }}
+                            />
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
         </section>
     )
