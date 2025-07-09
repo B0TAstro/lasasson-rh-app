@@ -1,65 +1,120 @@
 // app/components/layout/SecondaryNav.tsx
 
+// app/components/layout/SecondaryNav.tsx
+
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { ArrowLeft, ArrowRight, Home } from 'react-feather';
 
 const icons = {
   prev: ArrowLeft,
   home: Home,
   next: ArrowRight,
-};
-
-const TOTAL_SECTIONS = 9;
-const INITIAL_SECTION = 0;
+} as const;
 
 export default function SecondaryNav() {
-  const [currentSection, setCurrentSection] = useState(INITIAL_SECTION);
+  const [currentSection, setCurrentSection] = useState<number>(0);
+  const currentSectionRef = useRef<number>(0);
+  const [sections, setSections] = useState<HTMLElement[]>([]);
   const [activeButton, setActiveButton] = useState<'prev' | 'home' | 'next'>('home');
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const navigateToSection = (direction: 'prev' | 'next') => {
-    let newSection = currentSection;
-    if (direction === 'prev' && currentSection > 1) newSection--;
-    if (direction === 'next' && currentSection < TOTAL_SECTIONS) newSection++;
-
-    if (newSection !== currentSection) {
-      setCurrentSection(newSection);
-      const sectionElement = document.getElementById(`section-${newSection}`);
-      if (sectionElement) sectionElement.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      for (let i = TOTAL_SECTIONS; i >= 1; i--) {
-        const sectionElement = document.getElementById(`section-${i}`);
-        if (sectionElement && sectionElement.getBoundingClientRect().top <= window.innerHeight / 2) {
-          setCurrentSection(i);
-          break;
-        }
-      }
-    };
-
-    // Throttle pour les performances
-    let ticking = false;
-    const throttledScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', throttledScroll);
-    return () => window.removeEventListener('scroll', throttledScroll);
+  // Memoized section detection
+  const detectSections = useCallback(() => {
+    const allSections = Array.from(document.querySelectorAll('[id^="section-"]'))
+      .filter(el => /^section-\d+$/.test(el.id))
+      .sort((a, b) => {
+        const numA = parseInt(a.id.split('-')[1]);
+        const numB = parseInt(b.id.split('-')[1]);
+        return numA - numB;
+      }) as HTMLElement[];
+    setSections(allSections);
   }, []);
+
+  // Initial sections detection
+  useEffect(() => {
+    detectSections();
+  }, [detectSections]);
+
+  // Memoized navigation functions
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setCurrentSection(0);
+    currentSectionRef.current = 0;
+  }, []);
+
+  const navigateToSection = useCallback((direction: 'prev' | 'next') => {
+    if (!sections.length) return;
+
+    let newIndex = currentSection;
+    if (direction === 'prev' && newIndex > 0) newIndex--;
+    if (direction === 'next' && newIndex < sections.length - 1) newIndex++;
+
+    if (newIndex !== currentSection) {
+      const target = sections[newIndex];
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        setCurrentSection(newIndex);
+        currentSectionRef.current = newIndex;
+      }
+    }
+  }, [sections, currentSection]);
+
+  // Optimized IntersectionObserver with debouncing
+  useEffect(() => {
+    if (!sections.length) return;
+
+    // Disconnect previous observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    // Debounced callback to reduce frequent updates
+    let timeoutId: NodeJS.Timeout;
+    const debouncedCallback = (entries: IntersectionObserverEntry[]) => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const visibleSections = entries
+          .filter(e => e.isIntersecting)
+          .map(e => parseInt(e.target.id.split('-')[1]))
+          .sort((a, b) => a - b);
+
+        if (visibleSections.length > 0) {
+          const topMost = visibleSections[0];
+          if (Math.abs(topMost - currentSectionRef.current) >= 1) {
+            setCurrentSection(topMost);
+            currentSectionRef.current = topMost;
+          }
+        }
+      }, 50); // 50ms debounce
+    };
+
+    observerRef.current = new IntersectionObserver(debouncedCallback, {
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0.1,
+    });
+
+    sections.forEach((el) => observerRef.current!.observe(el));
+
+    return () => {
+      clearTimeout(timeoutId);
+      observerRef.current?.disconnect();
+    };
+  }, [sections]);
+
+  // Memoized button states
+  const buttonStates = useMemo(() => ({
+    prev: {
+      isDisabled: currentSection <= 0,
+    },
+    next: {
+      isDisabled: currentSection >= sections.length - 1,
+    },
+    home: {
+      isDisabled: false,
+    },
+  }), [currentSection, sections.length]);
 
   const Button = ({ id }: { id: 'prev' | 'home' | 'next' }) => {
     const Icon = icons[id];
@@ -67,34 +122,44 @@ export default function SecondaryNav() {
     const [animKey, setAnimKey] = useState(0);
 
     const isActive = activeButton === id;
-    const isDisabled =
-      (id === 'prev' && currentSection === 1) ||
-      (id === 'next' && currentSection === TOTAL_SECTIONS);
+    const isDisabled = buttonStates[id].isDisabled;
 
-    const handleClick = () => {
+    const handleClick = useCallback(() => {
       if (isDisabled) return;
       setActiveButton(id);
       setAnimKey(Date.now());
       id === 'home' ? scrollToTop() : navigateToSection(id);
-    };
+    }, [isDisabled, id, scrollToTop, navigateToSection]);
+
+    const handleMouseDown = useCallback(() => setIsPressed(true), []);
+    const handleMouseUp = useCallback(() => setIsPressed(false), []);
+    const handleMouseLeave = useCallback(() => setIsPressed(false), []);
+
+    // Memoized button classes
+    const buttonClasses = useMemo(() =>
+      `flex flex-col items-center justify-center w-10 h-10 rounded-full transition-all duration-200 
+        ${isPressed ? 'bg-gray-100 translate-y-[1px]' : ''}
+        ${isActive ? 'py-1' : ''}
+        ${isDisabled ? 'opacity-0 cursor-not-allowed' : ''}
+      `, [isPressed, isActive, isDisabled]);
+
+    const iconClasses = useMemo(() =>
+      `${isActive ? 'text-[var(--color-primary)] animate-bounce-up-icon' : 'text-[var(--grey)]'}`
+      , [isActive]);
 
     return (
       <button
         onClick={handleClick}
-        onMouseDown={() => setIsPressed(true)}
-        onMouseUp={() => setIsPressed(false)}
-        onMouseLeave={() => setIsPressed(false)}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
         disabled={isDisabled}
-        className={`flex flex-col items-center justify-center w-10 h-10 rounded-full transition-all duration-200 
-        ${isPressed ? 'bg-gray-100' : ''}
-        ${isActive ? 'py-1' : ''}
-        ${isDisabled ? 'opacity-0 cursor-not-allowed' : ''}
-      `}
+        className={buttonClasses}
       >
         <Icon
           key={`icon-${animKey}`}
           size={24}
-          className={`${isActive ? 'text-[var(--color-primary)] animate-bounce-up-icon' : 'text-[var(--grey)]'}`}
+          className={iconClasses}
         />
         {isActive && (
           <span
