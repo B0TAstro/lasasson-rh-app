@@ -19,4 +19,23 @@ export type IntroductionType = {
   };
 };
 
-export type SectionType = IntroductionType;
+export type CadreJuridiqueType = {
+  _id: string;
+  title: string;
+  juridicalItems: {
+    title: string;
+    content: PortableTextBlock[];
+    hasButton: boolean;
+    buttonText?: string;
+    buttonType?: 'external' | 'pdf';
+    buttonUrl?: string;
+    buttonPdf?: {
+      asset: {
+        _ref: string;
+        _type: string;
+      };
+    };
+  }[];
+};
+
+export type SectionType = IntroductionType | CadreJuridiqueType;

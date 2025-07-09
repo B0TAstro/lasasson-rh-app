@@ -23,3 +23,27 @@ export async function getIntroduction() {
     }
   `);
 }
+
+export async function getCadreJuridique() {
+  return client.fetch(groq`
+    *[_type == "juridique"][0] {
+      _id,
+      title,
+      juridicalItems[] {
+        title,
+        content,
+        hasButton,
+        buttonText,
+        buttonType,
+        buttonUrl,
+        buttonPdf {
+          asset-> {
+            _id,
+            url,
+            originalFilename
+          }
+        }
+      }
+    }
+  `);
+}
