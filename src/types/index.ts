@@ -31,8 +31,9 @@ export type CadreJuridiqueType = {
     buttonUrl?: string;
     buttonPdf?: {
       asset: {
-        _ref: string;
-        _type: string;
+        _id: string;
+        url: string;
+        originalFilename: string;
       };
     };
   }[];
