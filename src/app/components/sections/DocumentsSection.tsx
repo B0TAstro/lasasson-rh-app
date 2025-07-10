@@ -10,7 +10,7 @@ export default async function DocumentsRessourcesSection() {
     if (!documentsData || !documentsData.documentItems?.length) return null
     // console.log('Documents Ressources Data:', documentsData)
     return (
-        <section id="section-3" className="pt-19 px-5 md:px-10 lg:px-16 mb-200">
+        <section id="section-3" className="pt-19 px-5 md:px-10 lg:px-16">
             <h2 className="text-[18px] font-medium underline mb-6">
                 {documentsData.title}
             </h2>
