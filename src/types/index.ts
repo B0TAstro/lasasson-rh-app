@@ -39,4 +39,22 @@ export type CadreJuridiqueType = {
   }[];
 };
 
-export type SectionType = IntroductionType | CadreJuridiqueType;
+export type DocumentsRessourcesType = {
+  _id: string;
+  title: string;
+  documentItems: {
+    title: string;
+    documentType: 'document' | 'external';
+    externalUrl?: string;
+    documentFile?: {
+      asset: {
+        _id: string;
+        url: string;
+        originalFilename: string;
+        mimeType?: string;
+      };
+    };
+  }[];
+};
+
+export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType;

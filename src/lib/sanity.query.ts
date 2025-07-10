@@ -47,3 +47,25 @@ export async function getCadreJuridique() {
     }
   `);
 }
+
+export async function getDocumentsRessources() {
+  return client.fetch(groq`
+    *[_type == "documents"][0] {
+      _id,
+      title,
+      documentItems[] {
+        title,
+        documentType,
+        externalUrl,
+        documentFile {
+          asset-> {
+            _id,
+            url,
+            originalFilename,
+            mimeType
+          }
+        }
+      }
+    }
+  `);
+}
