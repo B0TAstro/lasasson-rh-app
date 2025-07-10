@@ -3,7 +3,7 @@
 import { PortableText } from '@portabletext/react'
 import { getCadreJuridique } from '@/lib/sanity.query'
 import type { CadreJuridiqueType } from '@/types'
-import { ArrowRight } from 'react-feather';
+import { ArrowRight, Download } from 'react-feather';
 
 export default async function CadreJuridiqueSection() {
     const cadreData: CadreJuridiqueType = await getCadreJuridique()
@@ -45,7 +45,7 @@ export default async function CadreJuridiqueSection() {
                                         href={item.buttonUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex justify-center items-center gap-1 bg-gradient-to-r from-[#FFCA22] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
+                                        className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[#FFCA22] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                                     >
                                         <ArrowRight size={16} />
                                         {item.buttonText}
@@ -53,12 +53,13 @@ export default async function CadreJuridiqueSection() {
                                 ) : item.buttonType === 'pdf' && item.buttonPdf?.asset ? (
                                     <a
                                         href={item.buttonPdf.asset.url}
+                                        download={item.buttonPdf.asset.originalFilename}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex justify-center items-center gap-1 bg-gradient-to-r from-[#FFCA22] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
+                                        className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[#FFCA22] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                                     >
-                                        <ArrowRight size={16} />
                                         {item.buttonText}
+                                        <Download size={16} />
                                     </a>
                                 ) : null}
                             </div>
