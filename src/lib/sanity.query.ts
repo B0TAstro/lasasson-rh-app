@@ -107,3 +107,42 @@ export async function getOrganigramme() {
     }
   `);
 }
+
+export async function getGestionConges() {
+  return client.fetch(groq`
+    *[_type == "conges"][0] {
+      _id,
+      title,
+      intro,
+      button1Intro {
+        text,
+        url
+      },
+      button2Intro {
+        text,
+        pdf {
+          asset-> {
+            _id,
+            url,
+            originalFilename
+          }
+        }
+      },
+      congeItems[] {
+        title,
+        content,
+        hasButton,
+        buttonText,
+        buttonType,
+        buttonUrl,
+        buttonPdf {
+          asset-> {
+            _id,
+            url,
+            originalFilename
+          }
+        }
+      }
+    }
+  `)
+}

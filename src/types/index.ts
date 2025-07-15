@@ -91,4 +91,40 @@ export type OrganigrammeType = {
   };
 };
 
-export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType;
+export type GestionCongesType = {
+  _id: string;
+  title: string;
+  intro: PortableTextBlock[];
+  button1Intro?: {
+    text: string;
+    url: string;
+  };
+  button2Intro?: {
+    text: string;
+    pdf: {
+      asset: {
+        _id: string;
+        url: string;
+        originalFilename: string;
+      };
+    };
+  };
+  congeItems: {
+    title: string;
+    content: PortableTextBlock[];
+    hasButton?: boolean;
+    buttonText?: string;
+    buttonType?: 'external' | 'pdf';
+    buttonUrl?: string;
+    buttonPdf?: {
+      asset: {
+        _id: string;
+        url: string;
+        originalFilename: string;
+      };
+    };
+  }[];
+};
+
+
+export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType | GestionCongesType;
