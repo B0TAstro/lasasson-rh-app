@@ -57,4 +57,38 @@ export type DocumentsRessourcesType = {
   }[];
 };
 
-export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType;
+export type OrganigrammeType = {
+  _id: string;
+  title: string;
+  organigrammeItems: {
+    nom: string;
+    prenom: string;
+    photo?: {
+      asset: {
+        _id: string;
+        url: string;
+        altText?: string;
+      };
+    };
+    service?: string;
+    fonction?: string;
+    etablissement?: string;
+    email?: string;
+    telephone?: string;
+  }[];
+  hasExtraSection?: boolean;
+  extraSectionTitle?: string;
+  extraSectionContent?: PortableTextBlock[];
+  extraSectionButtonText?: string;
+  extraSectionButtonType?: 'external' | 'pdf';
+  extraSectionButtonUrl?: string;
+  extraSectionButtonPdf?: {
+    asset: {
+      _id: string;
+      url: string;
+      originalFilename: string;
+    };
+  };
+};
+
+export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType;

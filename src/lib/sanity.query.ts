@@ -69,3 +69,41 @@ export async function getDocumentsRessources() {
     }
   `);
 }
+
+export async function getOrganigramme() {
+  return client.fetch(groq`
+    *[_type == "organigramme"][0] {
+      _id,
+      title,
+      organigrammeItems[] {
+        nom,
+        prenom,
+        photo {
+          asset-> {
+            _id,
+            url,
+            altText
+          }
+        },
+        service,
+        fonction,
+        etablissement,
+        email,
+        telephone
+      },
+      hasExtraSection,
+      extraSectionTitle,
+      extraSectionContent,
+      extraSectionButtonText,
+      extraSectionButtonType,
+      extraSectionButtonUrl,
+      extraSectionButtonPdf {
+        asset-> {
+          _id,
+          url,
+          originalFilename
+        }
+      }
+    }
+  `);
+}
