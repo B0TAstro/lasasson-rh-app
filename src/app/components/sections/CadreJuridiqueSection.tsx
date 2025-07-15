@@ -45,7 +45,7 @@ export default async function CadreJuridiqueSection() {
                                         href={item.buttonUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[#FFCA22] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
+                                        className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[#FFDD70] to-[#FFCA22] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                                     >
                                         <ArrowRight size={16} />
                                         {item.buttonText}
@@ -56,7 +56,7 @@ export default async function CadreJuridiqueSection() {
                                         download={item.buttonPdf.asset.originalFilename}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[#FFCA22] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
+                                        className="inline-flex justify-center items-center gap-2 bg-[var(--color-primary)] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                                     >
                                         {item.buttonText}
                                         <Download size={16} />

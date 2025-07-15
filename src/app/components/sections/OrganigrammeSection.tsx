@@ -456,7 +456,7 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
                   href={data.extraSectionButtonUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[var(--color-primary)] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
+                  className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[#FFDD70] to-[var(--color-primary)] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                 >
                   <ArrowRight size={16} />
                   {data.extraSectionButtonText}
@@ -467,7 +467,7 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
                   download={data.extraSectionButtonPdf.asset.originalFilename}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[var(--color-primary)] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
+                  className="inline-flex justify-center items-center gap-2 bg-[var(--color-primary)] to-[#FFDD70] text-white text-sm font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                 >
                   {data.extraSectionButtonText}
                   <Download size={16} />

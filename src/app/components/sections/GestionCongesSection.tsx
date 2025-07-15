@@ -1,24 +1,22 @@
 // app/components/sections/GestionCongesSection.tsx
 
-// 'use client'
-
 import { getGestionConges } from '@/lib/sanity.query'
 import type { GestionCongesType } from '@/types'
 import { PortableText } from '@portabletext/react'
 import { ArrowRight, Download } from 'react-feather'
 
 export default async function GestionCongesSection() {
-    const data: GestionCongesType = await getGestionConges()
+    const congesdata: GestionCongesType = await getGestionConges()
 
-    if (!data) return null
-    // console.log('Gestion Conges Data:', data)
+    if (!congesdata) return null
+    // console.log('Gestion Conges congesdata:', congesdata)
     return (
         <section id="section-5" className="pt-19 px-5 md:px-10 lg:px-16">
-            <h2 className="text-[18px] font-medium underline">{data.title}</h2>
+            <h2 className="text-[18px] font-medium underline">{congesdata.title}</h2>
 
-            <div className="space-y-4 text-sm">
+            <div className="mt-6 text-sm font-light space-y-2">
                 <PortableText
-                    value={data.intro}
+                    value={congesdata.intro}
                     components={{
                         block: {
                             normal: ({ children }) => <p>{children}</p>
@@ -33,39 +31,39 @@ export default async function GestionCongesSection() {
                         }
                     }}
                 />
-                <div className="flex flex-col sm:flex-row gap-4 mt-4">
-                    {data.button1Intro && data.button1Intro.url && (
+                <div className="flex flex-col gap-4 mt-4">
+                    {congesdata.button1Intro && congesdata.button1Intro.url && (
                         <a
-                            href={data.button1Intro.url}
+                            href={congesdata.button1Intro.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-white text-sm font-medium px-5 py-3 rounded-xl transition"
+                            className="inline-flex items-center gap-2 bg-gradient-to-r from-[#FFDD70] to-[#FFCA22] text-white text-sm text-left font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-101 active:translate-y-[3px] active:scale-[0.99]"
                         >
                             <ArrowRight size={16} />
-                            {data.button1Intro.text}
+                            {congesdata.button1Intro.text}
                         </a>
                     )}
-                    {data.button2Intro?.pdf?.asset && (
+                    {congesdata.button2Intro?.pdf?.asset && (
                         <a
-                            href={data.button2Intro.pdf.asset.url}
-                            download={data.button2Intro.pdf.asset.originalFilename}
+                            href={congesdata.button2Intro.pdf.asset.url}
+                            download={congesdata.button2Intro.pdf.asset.originalFilename}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-white text-sm font-medium px-5 py-3 rounded-xl transition"
+                            className="inline-flex items-center gap-2 bg-[var(--color-primary)] text-white text-sm font-medium p-3.5 rounded-xl transition-all duration-200 hover:scale-101 active:translate-y-[3px] active:scale-[0.99]"
                         >
-                            {data.button2Intro.text}
+                            {congesdata.button2Intro.text}
                             <Download size={16} />
                         </a>
                     )}
                 </div>
             </div>
 
-            <div className="mt-10 space-y-10">
-                {data.congeItems.map((item, idx) => (
+            <div className="mt-6 space-y-6">
+                {congesdata.congeItems.map((item, idx) => (
                     <div key={idx} className="space-y-4">
                         <h3 className="font-medium">{item.title}</h3>
 
-                        <div className="text-sm font-light space-y-2">
+                        <div className="mt-2 text-sm font-light space-y-2">
                             <PortableText
                                 value={item.content}
                                 components={{
@@ -81,16 +79,16 @@ export default async function GestionCongesSection() {
                                         number: ({ children }) => <li className="ml-2">{children}</li>,
                                     }
                                 }}
-                            />                        </div>
-
+                            />
+                        </div>
                         {item.hasButton && item.buttonText && (
-                            <div className="mt-4">
+                            <div className="mt-4 flex justify-center">
                                 {item.buttonType === 'external' && item.buttonUrl ? (
                                     <a
                                         href={item.buttonUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-white text-sm font-medium px-5 py-3 rounded-xl transition"
+                                        className="inline-flex justify-center items-center gap-2 bg-gradient-to-r from-[#FFDD70] to-[#FFCA22] text-white text-sm text-left font-medium p-3.5 rounded-3xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                                     >
                                         <ArrowRight size={16} />
                                         {item.buttonText}
@@ -101,7 +99,7 @@ export default async function GestionCongesSection() {
                                         download={item.buttonPdf.asset.originalFilename}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-500 text-white text-sm font-medium px-5 py-3 rounded-xl transition"
+                                        className="inline-flex justify-center items-center gap-2 bg-[var(--color-primary)] text-white text-sm font-medium p-3.5 rounded-xl transition-all duration-200 hover:scale-103 active:translate-y-[3px] active:scale-[0.99]"
                                     >
                                         {item.buttonText}
                                         <Download size={16} />
