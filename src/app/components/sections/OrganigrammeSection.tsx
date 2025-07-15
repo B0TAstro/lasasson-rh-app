@@ -98,7 +98,7 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
   };
 
   return (
-    <section id="section-4" className="pt-19 px-5 md:px-10 lg:px-16 mb-25">
+    <section id="section-4" className="pt-19 px-5 md:px-10 lg:px-16">
       <h2 className="text-[18px] font-medium underline">{data.title}</h2>
 
       <div className="mt-6 space-y-6">
