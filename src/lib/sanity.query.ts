@@ -186,3 +186,28 @@ export async function getFormations() {
     }
   `);
 }
+
+export async function getFaq() {
+  return client.fetch(groq`
+    *[_type == "faq"][0] {
+      _id,
+      title,
+      introContent,
+      faqItems[] {
+        question,
+        answer
+      },
+      infoBlockTitle,
+      infoBlockContent
+    }
+  `);
+}
+
+export async function getIRP() {
+  return client.fetch(groq`
+    *[_type == "irp"][0] {
+      _id,
+      title,
+    }
+  `);
+}

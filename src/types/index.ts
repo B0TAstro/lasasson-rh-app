@@ -162,4 +162,21 @@ export type FormationsType = {
   }[];
 };
 
-export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType | GestionCongesType | FormationsType;
+export type FaqType = {
+  _id: string;
+  title: string;
+  introContent: PortableTextBlock[];
+  faqItems: {
+    question: string;
+    answer: PortableTextBlock[];
+  }[];
+  infoBlockTitle: string;
+  infoBlockContent: PortableTextBlock[];
+};
+
+export type IRPType = {
+  _id: string;
+  title: string;
+};
+
+export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType | GestionCongesType | FormationsType | FaqType;
