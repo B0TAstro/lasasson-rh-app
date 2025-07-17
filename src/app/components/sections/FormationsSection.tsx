@@ -69,7 +69,7 @@ export default async function FormationsSection() {
                         <h3 className="font-medium">{block.blockTitle}</h3>
 
                         {block.blockItems.map((item, itemIdx) => (
-                            <div key={itemIdx} className="mt-6">
+                            <div key={itemIdx} className="mt-4">
                                 {item.itemSubtitle && (
                                     <h4 className="text-[15px] underline font-normal ml-6">{item.itemSubtitle}</h4>
                                 )}
