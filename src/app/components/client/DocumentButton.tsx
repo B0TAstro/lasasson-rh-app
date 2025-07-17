@@ -1,4 +1,4 @@
-// app/components/DocumentButton.tsx
+// app/components/client/DocumentButton.tsx
 
 'use client'
 

@@ -2,7 +2,7 @@
 
 import { getDocumentsRessources } from '@/lib/sanity.query'
 import type { DocumentsRessourcesType } from '@/types'
-import DocumentButton from '../DocumentButton'
+import DocumentButton from '../client/DocumentButton'
 
 export default async function DocumentsRessourcesSection() {
     const documentsData: DocumentsRessourcesType = await getDocumentsRessources()
