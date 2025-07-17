@@ -126,5 +126,40 @@ export type GestionCongesType = {
   }[];
 };
 
+export type FormationsType = {
+  _id: string;
+  title: string;
+  subtitle: string;
+  introContent: PortableTextBlock[];
+  hasIntroButton?: boolean;
+  introButtonText?: string;
+  introButtonType?: 'external' | 'pdf';
+  introButtonUrl?: string;
+  introButtonPdf?: {
+    asset: {
+      _id: string;
+      url: string;
+      originalFilename: string;
+    };
+  };
+  formationBlocks: {
+    blockTitle: string;
+    blockItems: {
+      itemSubtitle?: string;
+      itemContent: PortableTextBlock[];
+      hasButton?: boolean;
+      buttonText?: string;
+      buttonType?: 'external' | 'pdf';
+      buttonUrl?: string;
+      buttonPdf?: {
+        asset: {
+          _id: string;
+          url: string;
+          originalFilename: string;
+        };
+      };
+    }[];
+  }[];
+};
 
-export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType | GestionCongesType;
+export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType | GestionCongesType | FormationsType;

@@ -6,6 +6,7 @@ import JuridiqueSection from './components/sections/CadreJuridiqueSection';
 import DocumentsRessourcesSection from './components/sections/DocumentsSection';
 import OrganigrammeSection from './components/sections/OrganigrammeServerSection';
 import GestionCongesSection from './components/sections/GestionCongesSection';
+import FormationsSection from './components/sections/FormationsSection';
 
 export default async function Home() {
   return (
@@ -16,6 +17,7 @@ export default async function Home() {
       <DocumentsRessourcesSection />
       <OrganigrammeSection />
       <GestionCongesSection />
+      <FormationsSection />
     </main>
   );
 }

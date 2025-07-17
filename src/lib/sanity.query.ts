@@ -146,3 +146,43 @@ export async function getGestionConges() {
     }
   `)
 }
+
+export async function getFormations() {
+  return client.fetch(groq`
+    *[_type == "formations"][0] {
+      _id,
+      title,
+      subtitle,
+      introContent,
+      hasIntroButton,
+      introButtonText,
+      introButtonType,
+      introButtonUrl,
+      introButtonPdf {
+        asset-> {
+          _id,
+          url,
+          originalFilename
+        }
+      },
+      formationBlocks[] {
+        blockTitle,
+        blockItems[] {
+          itemSubtitle,
+          itemContent,
+          hasButton,
+          buttonText,
+          buttonType,
+          buttonUrl,
+          buttonPdf {
+            asset-> {
+              _id,
+              url,
+              originalFilename
+            }
+          }
+        }
+      }
+    }
+  `);
+}
