@@ -177,6 +177,67 @@ export type FaqType = {
 export type IRPType = {
   _id: string;
   title: string;
+  cseSection: {
+    title: string;
+    subtitle?: string;
+    content: PortableTextBlock[];
+    membres: {
+      type: 'titulaire' | 'suppleant';
+      nomPrenom: string;
+      fonction?: string;
+      structure: string;
+      telephone?: string;
+    }[];
+  };
+  representantsSection: {
+    title: string;
+    subtitle?: string;
+    content: PortableTextBlock[];
+    membres: {
+      territoire: string;
+      nom: string;
+      prenom: string;
+      structure: string;
+      telephone?: string;
+    }[];
+  };
+  deleguesSection: {
+    title: string;
+    subtitle?: string;
+    content: PortableTextBlock[];
+    membres: {
+      nomPrenom: string;
+      syndicat: string;
+      structure: string;
+      telephone?: string;
+    }[];
+  };
+  commissionsSection: {
+    title: string;
+    subtitle?: string;
+    content: PortableTextBlock[];
+    commissions: {
+      nom: string;
+      description?: string;
+      membres: {
+        nom: string;
+        prenom: string;
+        structure: string;
+      }[];
+    }[];
+  };
+  referentSection: {
+    title: string;
+    subtitle?: string;
+    content: PortableTextBlock[];
+    referents: {
+      type: 'referent' | 'referente';
+      nom: string;
+      prenom: string;
+      structure: string;
+    }[];
+    contactUrgence?: string;
+  };
 };
 
 export type SectionType = IntroductionType | CadreJuridiqueType | DocumentsRessourcesType | OrganigrammeType | GestionCongesType | FormationsType | FaqType;

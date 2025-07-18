@@ -208,6 +208,67 @@ export async function getIRP() {
     *[_type == "irp"][0] {
       _id,
       title,
+      cseSection {
+        title,
+        subtitle,
+        content,
+        membres[] {
+          type,
+          nomPrenom,
+          fonction,
+          structure,
+          telephone
+        }
+      },
+      representantsSection {
+        title,
+        subtitle,
+        content,
+        membres[] {
+          territoire,
+          nom,
+          prenom,
+          structure,
+          telephone
+        }
+      },
+      deleguesSection {
+        title,
+        subtitle,
+        content,
+        membres[] {
+          nomPrenom,
+          syndicat,
+          structure,
+          telephone
+        }
+      },
+      commissionsSection {
+        title,
+        subtitle,
+        content,
+        commissions[] {
+          nom,
+          description,
+          membres[] {
+            nom,
+            prenom,
+            structure
+          }
+        }
+      },
+      referentSection {
+        title,
+        subtitle,
+        content,
+        referents[] {
+          type,
+          nom,
+          prenom,
+          structure
+        },
+        contactUrgence
+      }
     }
   `);
 }
