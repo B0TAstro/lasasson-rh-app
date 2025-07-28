@@ -24,6 +24,7 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
   if (!data) return null;
 
   const serviceOptions = useMemo(() => {
+    if (!data.organigrammeItems) return [];
     const services = data.organigrammeItems
       .map(item => item.service)
       .filter((service): service is string => Boolean(service));
@@ -31,6 +32,7 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
   }, [data.organigrammeItems]);
 
   const fonctionOptions = useMemo(() => {
+    if (!data.organigrammeItems) return [];
     const fonctions = data.organigrammeItems
       .map(item => item.fonction)
       .filter((fonction): fonction is string => Boolean(fonction));
@@ -38,6 +40,7 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
   }, [data.organigrammeItems]);
 
   const etablissementOptions = useMemo(() => {
+    if (!data.organigrammeItems) return [];
     const etablissements = data.organigrammeItems
       .map(item => item.etablissement)
       .filter((etablissement): etablissement is string => Boolean(etablissement));
@@ -47,9 +50,9 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
   const hasActiveSearch = searchTerm !== '' || serviceFilter !== '' || fonctionFilter !== '' || etablissementFilter !== '';
 
   const filteredItems = useMemo(() => {
-    if (!hasActiveSearch) return [];
+    if (!hasActiveSearch || !data.organigrammeItems) return [];
 
-    let filtered = data.organigrammeItems.filter(item => {
+    const filtered = data.organigrammeItems.filter(item => {
       const matchesSearch = searchTerm === '' ||
         `${item.nom} ${item.prenom}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
         item.service?.toLowerCase().includes(searchTerm.toLowerCase()) ||

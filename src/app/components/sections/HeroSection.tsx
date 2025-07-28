@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
         <section id="section-0" className="pt-45 px-5 md:px-10 lg:px-16">
             <div className="mb-6">
                 <h2 className="font-semibold mb-3">
-                    <span className="inline-block">👋</span> Bienvenue sur l'espace RH en ligne de La Sasson
+                    <span className="inline-block">👋</span> Bienvenue sur l&apos;espace RH en ligne de La Sasson
                 </h2>
                 <p className="text-sm font-light">
                     Afin de vous offrir un accès simple et rapide aux informations essentielles, nous avons mis en place <strong>un espace RH en ligne dédié.</strong> Cet outil a été conçu pour <strong>centraliser toutes les ressources RH</strong>, réduire les sollicitations du service RH et vous permettre de trouver facilement les réponses à vos questions.
@@ -48,11 +48,11 @@ const HeroSection: React.FC = () => {
                 <ul className="text-sm font-light space-y-2 list-none">
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                        <span><strong>Accéder aux documents RH :</strong> règlements, conventions collectives, accords d'entreprise...</span>
+                        <span><strong>Accéder aux documents RH :</strong> règlements, conventions collectives, accords d&apos;entreprise...</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                        <span><strong>Consulter l'organigramme</strong> et contacter rapidement les bonnes personnes</span>
+                        <span><strong>Consulter l&apos;organigramme</strong> et contacter rapidement les bonnes personnes</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
@@ -60,11 +60,11 @@ const HeroSection: React.FC = () => {
                     </li>
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                        <span><strong>S'informer sur les formations :</strong> opportunités de formation et démarches</span>
+                        <span><strong>S&apos;informer sur les formations :</strong> opportunités de formation et démarches</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                        <span><strong>Consulter l'annuaire du personnel :</strong> avec recherche par service ou fonction</span>
+                        <span><strong>Consulter l&apos;annuaire du personnel :</strong> avec recherche par service ou fonction</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
@@ -81,13 +81,13 @@ const HeroSection: React.FC = () => {
                     {quickAccessButtons.map((button, index) => {
                         const Icon = button.icon;
                         return (
-                            <button 
+                            <button
                                 key={index}
                                 onClick={() => scrollToSection(button.section)}
                                 className="group relative bg-white hover:bg-gradient-to-br hover:from-[#FFCA22] hover:to-[#FFDD70] text-black hover:text-white py-3 rounded-2xl border border-gray-200 hover:border-transparent flex flex-col items-center justify-center gap-2 transition-all duration-300 ease-out hover:scale-[1.01] active:scale-95 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#FFCA22] focus:ring-offset-2"
                             >
                                 <div className="p-3 rounded-lg bg-gray-50 group-hover:bg-white/20 transition-colors duration-300">
-                                    <Icon size={24}/>
+                                    <Icon size={24} />
                                 </div>
                                 <span className="text-xs font-medium text-center">
                                     {button.label}

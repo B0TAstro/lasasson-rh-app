@@ -8,11 +8,26 @@ import { Plus, Minus } from 'react-feather'
 
 interface FaqItem {
     question: string
-    answer: any[]
+    answer: PortableTextBlock[]
 }
 
 interface FaqClientComponentProps {
     faqItems: FaqItem[]
+}
+
+interface PortableTextBlock {
+    _type: string
+    style?: string
+    children?: Array<{
+        _type: string
+        text: string
+        marks?: string[]
+    }>
+    markDefs?: Array<{
+        _type: string
+        _key: string
+        href?: string
+    }>
 }
 
 export default function FaqClientComponent({ faqItems }: FaqClientComponentProps) {
@@ -25,7 +40,7 @@ export default function FaqClientComponent({ faqItems }: FaqClientComponentProps
     )
 }
 
-function FaqItem({ question, answer }: { question: string; answer: any[] }) {
+function FaqItem({ question, answer }: { question: string; answer: PortableTextBlock[] }) {
     const [isOpen, setIsOpen] = useState(false)
     const [height, setHeight] = useState(0)
     const contentRef = useRef<HTMLDivElement>(null)

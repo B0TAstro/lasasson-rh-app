@@ -300,7 +300,7 @@ export default async function IRPSection() {
                 </div>
 
                 <div className="text-xs text-gray-600">
-                    <p>🚨 Contact d'urgence pour signalement</p>
+                    <p>🚨 Contact d&apos;urgence pour signalement</p>
                     <a href={`mailto:${irpData.referentSection.contactUrgence}`} className="text-[var(--color-primary)]">
                         {irpData.referentSection.contactUrgence}
                     </a>
