@@ -44,8 +44,8 @@ export default function PasswordPage() {
                     setError(`Accès bloqué pendant encore ${data.remainingTime}h`)
                 }
             }
-        } catch (error) {
-            console.error('Erreur lors du fetch du statut:', error)
+        } catch {
+            console.error('Erreur lors du fetch du statut')
         }
     }
 
@@ -53,7 +53,6 @@ export default function PasswordPage() {
         e.preventDefault()
         setLoading(true)
         setError('')
-
         try {
             const response = await fetch('/api/auth', {
                 method: 'POST',
@@ -88,7 +87,7 @@ export default function PasswordPage() {
                     setError(data.error);
                 }
             }
-        } catch (error) {
+        } catch {
             setError('Erreur de connexion au serveur')
         } finally {
             setPassword('');
