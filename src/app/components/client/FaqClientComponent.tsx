@@ -5,6 +5,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { PortableText } from '@portabletext/react'
 import { Plus, Minus } from 'react-feather'
+import type { PortableTextBlock } from '@portabletext/types'
 
 interface FaqItem {
     question: string
@@ -13,21 +14,6 @@ interface FaqItem {
 
 interface FaqClientComponentProps {
     faqItems: FaqItem[]
-}
-
-interface PortableTextBlock {
-    _type: string
-    style?: string
-    children?: Array<{
-        _type: string
-        text: string
-        marks?: string[]
-    }>
-    markDefs?: Array<{
-        _type: string
-        _key: string
-        href?: string
-    }>
 }
 
 export default function FaqClientComponent({ faqItems }: FaqClientComponentProps) {

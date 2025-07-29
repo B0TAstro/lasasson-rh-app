@@ -48,7 +48,6 @@ export default function SecondaryNav() {
     let newIndex = currentSection;
     if (direction === 'prev' && newIndex > 0) newIndex--;
     if (direction === 'next' && newIndex < sections.length - 1) newIndex++;
-
     if (newIndex !== currentSection) {
       const target = sections[newIndex];
       if (target) {
@@ -62,13 +61,10 @@ export default function SecondaryNav() {
   // Optimized IntersectionObserver with debouncing
   useEffect(() => {
     if (!sections.length) return;
-
     // Disconnect previous observer
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
-
-    // Debounced callback to reduce frequent updates
     let timeoutId: NodeJS.Timeout;
     const debouncedCallback = (entries: IntersectionObserverEntry[]) => {
       clearTimeout(timeoutId);
@@ -124,16 +120,21 @@ export default function SecondaryNav() {
 
     const handleClick = useCallback(() => {
       if (isDisabled) return;
+
       setActiveButton(id);
       setAnimKey(Date.now());
-      id === 'home' ? scrollToTop() : navigateToSection(id);
-    }, [isDisabled, id, scrollToTop, navigateToSection]);
+
+      if (id === 'home') {
+        scrollToTop();
+      } else {
+        navigateToSection(id);
+      }
+    }, [isDisabled, id]);
 
     const handleMouseDown = useCallback(() => setIsPressed(true), []);
     const handleMouseUp = useCallback(() => setIsPressed(false), []);
     const handleMouseLeave = useCallback(() => setIsPressed(false), []);
 
-    // Memoized button classes
     const buttonClasses = useMemo(() =>
       `flex flex-col items-center justify-center w-10 h-10 rounded-full transition-all duration-200 
         ${isPressed ? 'bg-gray-100 translate-y-[1px]' : ''}

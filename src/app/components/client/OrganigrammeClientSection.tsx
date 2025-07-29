@@ -21,36 +21,34 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
   const [isFonctionOpen, setIsFonctionOpen] = useState(false);
   const [isEtablissementOpen, setIsEtablissementOpen] = useState(false);
 
-  if (!data) return null;
-
   const serviceOptions = useMemo(() => {
-    if (!data.organigrammeItems) return [];
+    if (!data?.organigrammeItems) return [];
     const services = data.organigrammeItems
       .map(item => item.service)
       .filter((service): service is string => Boolean(service));
     return [...new Set(services)].sort();
-  }, [data.organigrammeItems]);
+  }, [data?.organigrammeItems]);
 
   const fonctionOptions = useMemo(() => {
-    if (!data.organigrammeItems) return [];
+    if (!data?.organigrammeItems) return [];
     const fonctions = data.organigrammeItems
       .map(item => item.fonction)
       .filter((fonction): fonction is string => Boolean(fonction));
     return [...new Set(fonctions)].sort();
-  }, [data.organigrammeItems]);
+  }, [data?.organigrammeItems]);
 
   const etablissementOptions = useMemo(() => {
-    if (!data.organigrammeItems) return [];
+    if (!data?.organigrammeItems) return [];
     const etablissements = data.organigrammeItems
       .map(item => item.etablissement)
       .filter((etablissement): etablissement is string => Boolean(etablissement));
     return [...new Set(etablissements)].sort();
-  }, [data.organigrammeItems]);
+  }, [data?.organigrammeItems]);
 
   const hasActiveSearch = searchTerm !== '' || serviceFilter !== '' || fonctionFilter !== '' || etablissementFilter !== '';
 
   const filteredItems = useMemo(() => {
-    if (!hasActiveSearch || !data.organigrammeItems) return [];
+    if (!hasActiveSearch || !data?.organigrammeItems) return [];
 
     const filtered = data.organigrammeItems.filter(item => {
       const matchesSearch = searchTerm === '' ||
@@ -91,7 +89,7 @@ export default function OrganigrammeSection({ data }: OrganigrammeSectionProps) 
     }
 
     return filtered;
-  }, [data.organigrammeItems, searchTerm, serviceFilter, fonctionFilter, etablissementFilter, hasActiveSearch]);
+  }, [data?.organigrammeItems, searchTerm, serviceFilter, fonctionFilter, etablissementFilter, hasActiveSearch]);
 
   const resetFilters = () => {
     setSearchTerm('');
