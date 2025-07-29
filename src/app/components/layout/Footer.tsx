@@ -10,14 +10,14 @@ export default function Footer() {
           © {currentYear} La Sasson. Tous droits réservés.
         </p>
         <p className="text-xs text-gray-300 mt-3">
-          Made by{" "}
+          Créé par et pour{" "}
           <a
             href="https://github.com/B0TAstro"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[var(--color-primary)] hover:underline transition-colors"
           >
-            Astro
+            La Sasson
           </a>
         </p>
       </div>

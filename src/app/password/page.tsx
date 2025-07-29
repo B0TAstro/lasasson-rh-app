@@ -5,7 +5,6 @@
 import { Suspense } from 'react'
 import PasswordForm from './PasswordForm'
 
-// Composant de fallback pour le suspense
 function PasswordPageFallback() {
     return (
         <section className="min-h-screen flex items-center justify-center px-5 md:px-10 lg:px-16">

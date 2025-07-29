@@ -96,7 +96,7 @@ export default function PasswordForm() {
     }
 
     return (
-        <section className="min-h-screen flex items-center justify-center px-5 md:px-10 lg:px-16">
+        <section className="fixed inset-0 w-screen h-screen flex items-center justify-center px-5 md:px-10 lg:px-16 bg-white z-50">
             <div className="max-w-xl w-full">
                 <h2 className="text-center text-2xl sm:text-3xl font-extrabold">
                     La Sasson - Accès Espace RH
@@ -163,7 +163,7 @@ export default function PasswordForm() {
                                     <strong>Temps restant :</strong> {status.remainingTime}h
                                 </p>
                                 <p className="text-sm">
-                                    Veuillez contacter votre chef de service ou le service RH au besoin.
+                                    Veuillez contacter le service RH au besoin.
                                 </p>
                             </div>
                         </div>
