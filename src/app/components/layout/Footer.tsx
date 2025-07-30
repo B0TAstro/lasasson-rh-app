@@ -10,7 +10,7 @@ export default function Footer() {
           © {currentYear} La Sasson. Tous droits réservés.
         </p>
         <p className="text-xs text-gray-300 mt-3">
-          Créé par et pour{" "}
+          Créé pour et par{" "}
           <a
             href="https://github.com/B0TAstro"
             target="_blank"
