@@ -26,14 +26,14 @@ export default function WednesdayNotice() {
                     Fermeture du service RH
                 </h2>
                 <p className="text-gray-700 mt-5">
-                    Le service RH est <strong>indisponible tous les mercredis</strong>.
-                    Aucun <strong>accueil téléphonique</strong> ni <strong>rendez-vous en présentiel</strong> n&apos;est assuré ce jour-là.
+                    Nous vous rappelons que le service RH est <strong>fermé tous les mercredis</strong>.
                 </p>
                 <p className="text-sm text-gray-500 mt-3">
-                    Cette application a été mise en place afin de vous permettre d’accéder aux réponses à vos demandes durant cette journée.
+                    Pour rappel : le service Ressources Humaines est ouvert Lundi/Mardi/Jeudi/Vendredi <strong>de 8h30 à 12h sans rendez-vous</strong> et <strong>l'après-midi de 14h à 17h sur rendez-vous</strong>.
+
                 </p>
                 <p className="text-sm text-gray-500 mt-4">
-                    Pour toute demande, merci de patienter jusqu’au <strong>jeudi matin</strong>.
+                    Cette application a été conçue pour vous fournir les informations nécessaires et répondre à vos questions/demandes durant cette journée de fermeture.
                 </p>
 
                 <button
