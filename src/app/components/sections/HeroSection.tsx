@@ -48,7 +48,7 @@ const HeroSection: React.FC = () => {
                 <ul className="text-sm font-light space-y-2 list-none">
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
-                        <span><strong>Accéder aux documents RH :</strong> règlements, conventions collectives, accords d&apos;entreprise...</span>
+                        <span><strong>Accéder aux documents RH :</strong> règlements, convention collective, accords d&apos;entreprise...</span>
                     </li>
                     <li className="flex items-start gap-2">
                         <div className="w-1 h-1 bg-[var(--color-primary)] rounded-full mt-2 flex-shrink-0"></div>
