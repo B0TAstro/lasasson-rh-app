@@ -36,7 +36,7 @@ const HeroSection: React.FC = () => {
                     <span className="inline-block">👋</span> Bienvenue sur l&apos;espace RH en ligne de La Sasson
                 </h2>
                 <p className="text-sm font-light">
-                    Afin de vous offrir un accès simple et rapide aux informations essentielles, nous avons mis en place <strong>un espace RH en ligne dédié.</strong> Cet outil a été conçu pour <strong>centraliser toutes les ressources RH</strong>, réduire les sollicitations du service RH et vous permettre de trouver facilement les réponses à vos questions.
+                    Afin de vous offrir un accès simple et rapide aux informations essentielles, nous avons mis en place <strong>un espace RH en ligne dédié.</strong> Cet outil a été conçu pour <strong>centraliser toutes les ressources RH</strong> et vous permettre de trouver facilement les réponses à vos questions.
                 </p>
             </div>
 
