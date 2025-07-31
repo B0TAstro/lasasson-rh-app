@@ -187,6 +187,44 @@ export async function getFormations() {
   `);
 }
 
+// Ajouter dans lib/sanity.query.ts
+
+export async function getMutuelle() {
+  return client.fetch(groq`
+    *[_type == "mutuelle"][0] {
+      _id,
+      title,
+      introContent,
+      hasIntroButton,
+      introButtonText,
+      introButtonType,
+      introButtonUrl,
+      introButtonPdf {
+        asset-> {
+          _id,
+          url,
+          originalFilename
+        }
+      },
+      mutuelleItems[] {
+        title,
+        content,
+        hasButton,
+        buttonText,
+        buttonType,
+        buttonUrl,
+        buttonPdf {
+          asset-> {
+            _id,
+            url,
+            originalFilename
+          }
+        }
+      }
+    }
+  `);
+}
+
 export async function getFaq() {
   return client.fetch(groq`
     *[_type == "faq"][0] {

@@ -162,6 +162,38 @@ export type FormationsType = {
   }[];
 };
 
+export type MutuelleType = {
+  _id: string;
+  title: string;
+  introContent: PortableTextBlock[];
+  hasIntroButton?: boolean;
+  introButtonText?: string;
+  introButtonType?: 'external' | 'pdf';
+  introButtonUrl?: string;
+  introButtonPdf?: {
+    asset: {
+      _id: string;
+      url: string;
+      originalFilename: string;
+    };
+  };
+  mutuelleItems: {
+    title: string;
+    content: PortableTextBlock[];
+    hasButton?: boolean;
+    buttonText?: string;
+    buttonType?: 'external' | 'pdf';
+    buttonUrl?: string;
+    buttonPdf?: {
+      asset: {
+        _id: string;
+        url: string;
+        originalFilename: string;
+      };
+    };
+  }[];
+};
+
 export type FaqType = {
   _id: string;
   title: string;

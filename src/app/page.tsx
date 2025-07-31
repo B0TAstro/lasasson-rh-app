@@ -8,6 +8,7 @@ import DocumentsRessourcesSection from './components/sections/DocumentsSection';
 import OrganigrammeSection from './components/sections/OrganigrammeSection';
 import GestionCongesSection from './components/sections/GestionCongesSection';
 import FormationsSection from './components/sections/FormationsSection';
+import MutuelleSection from './components/sections/MutuelleSection';
 import IRPSection from './components/sections/IRPSection';
 import FaqSection from './components/sections/FaqSection';
 
@@ -22,6 +23,7 @@ export default async function Home() {
       <OrganigrammeSection />
       <GestionCongesSection />
       <FormationsSection />
+      <MutuelleSection />
       <IRPSection />
       <FaqSection />
     </main>

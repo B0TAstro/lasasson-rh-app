@@ -11,7 +11,7 @@ export default async function FaqSection() {
     if (!faqData) return null
     // console.log('FAQ Data:', faqData)
     return (
-        <section id="section-8" className="pt-19 px-5 md:px-10 lg:px-16">
+        <section id="section-9" className="pt-19 px-5 md:px-10 lg:px-16">
             <h2 className="text-[18px] font-medium underline">{faqData.title}</h2>
 
             <div className="mt-6 text-sm font-light space-y-2">

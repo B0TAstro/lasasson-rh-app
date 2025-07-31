@@ -4,7 +4,7 @@
 
 import { useEffect, useState, useRef } from 'react'
 import Image from 'next/image'
-import { X, Menu, MapPin, Users, BookOpen, Briefcase, Folder, HelpCircle, Calendar, UserCheck } from 'react-feather'
+import { X, Menu, MapPin, Users, BookOpen, Briefcase, Folder, HelpCircle, Calendar, UserCheck, Heart } from 'react-feather'
 
 const desktopSections = [
   { label: 'Intro', href: '#section-1' },
@@ -13,8 +13,9 @@ const desktopSections = [
   { label: 'Organigramme', href: '#section-4' },
   { label: 'Absences', href: '#section-5' },
   { label: 'Formations', href: '#section-6' },
-  { label: 'IRP', href: '#section-7' },
-  { label: 'FAQ', href: '#section-8' }
+  { label: 'Mutuelle', href: '#section-7' },
+  { label: 'IRP', href: '#section-8' },
+  { label: 'FAQ', href: '#section-9' }
 ]
 
 const sections = [
@@ -24,8 +25,9 @@ const sections = [
   { label: 'Organigramme et Annuaire', icon: <Users />, href: '#section-4' },
   { label: 'Gestion des Absences & Congés', icon: <Calendar />, href: '#section-5' },
   { label: 'Formations', icon: <BookOpen />, href: '#section-6' },
-  { label: 'Instances Représentatives', icon: <UserCheck />, href: '#section-7' },
-  { label: 'FAQ', icon: <HelpCircle />, href: '#section-8' }
+  { label: 'Mutuelle', icon: <Heart />, href: '#section-7' },
+  { label: 'Instances Représentatives', icon: <UserCheck />, href: '#section-8' },
+  { label: 'FAQ', icon: <HelpCircle />, href: '#section-9' }
 ]
 
 export default function Navbar() {

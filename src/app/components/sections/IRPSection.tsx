@@ -11,7 +11,7 @@ export default async function IRPSection() {
     if (!irpData) return null
     // conole.log(irpData)
     return (
-        <section id="section-7" className="pt-19 px-5 md:px-10 lg:px-16">
+        <section id="section-8" className="pt-19 px-5 md:px-10 lg:px-16">
             <h2 className="text-[18px] font-medium underline">{irpData.title}</h2>
 
             {/* Section CSE */}
