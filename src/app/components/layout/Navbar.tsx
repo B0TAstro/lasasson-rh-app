@@ -33,10 +33,16 @@ const sections = [
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(false)
   const menuRef = useRef<HTMLDivElement>(null)
   const startX = useRef(0)
   const currentX = useRef(0)
   const isDragging = useRef(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 40)
@@ -46,6 +52,8 @@ export default function Navbar() {
 
   // Swipe
   useEffect(() => {
+    if (!isMounted) return
+
     const handleTouchStart = (e: TouchEvent) => {
       startX.current = e.touches[0].clientX
       isDragging.current = true
@@ -76,7 +84,44 @@ export default function Navbar() {
       document.removeEventListener('touchmove', handleTouchMove)
       document.removeEventListener('touchend', handleTouchEnd)
     }
-  }, [isOpen])
+  }, [isOpen, isMounted])
+
+  if (!isMounted) {
+    return (
+      <header className="fixed top-0 left-0 w-full z-11 pt-5 pb-1 bg-white/10 backdrop-blur-[17.5px]">
+        <div className="relative flex items-center justify-between text-black lg:hidden">
+          <div className="absolute z-10 top-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center">
+            <div className="h-12 w-40 bg-gray-200 animate-pulse rounded" />
+            <h1 className="text-xl mt-5" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
+              <a href="#top">Informations RH</a>
+            </h1>
+          </div>
+          <div className="ml-auto bg-[var(--color-primary)] flex-shrink-0 filter drop-shadow-[1px_3px_6px_rgba(0,0,0,0.25)] rounded-l-full">
+            <div className="pr-8 pl-4 pt-2.5 pb-2.5">
+              <Menu size={24} />
+            </div>
+          </div>
+        </div>
+        <div className="hidden lg:block relative px-16 pb-4">
+          <div className="absolute top-0 left-1/2 transform -translate-x-1/2">
+            <div className="h-12 w-45 bg-gray-200 animate-pulse rounded" />
+          </div>
+          <div className="flex items-center justify-between opacity-0">
+            <h1 className="text-xl" style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
+              <a href="#top">Informations RH</a>
+            </h1>
+            <nav className="flex gap-5 text-sm font-medium">
+              {desktopSections.map(({ label, href }) => (
+                <a key={href} href={href} className="text-black">
+                  {label}
+                </a>
+              ))}
+            </nav>
+          </div>
+        </div>
+      </header>
+    )
+  }
 
   return (
     <>
@@ -84,13 +129,20 @@ export default function Navbar() {
         {/* Mobile Navbar */}
         <div className="relative flex items-center justify-between text-black lg:hidden">
           <div className="absolute z-10 top-0 left-1/2 transform -translate-x-1/2 flex flex-col items-center transition-all duration-500">
-            <Image
-              src="/image/logo-sasson.png"
-              alt="Logo La Sasson"
-              width={160}
-              height={50}
-              className={`h-12 w-auto transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-15' : 'opacity-100 translate-y-0'}`}
-            />
+            <div className={`transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-15' : 'opacity-100 translate-y-0'}`}>
+              {!imageLoaded && (
+                <div className="h-12 w-40 bg-gray-200 animate-pulse rounded" />
+              )}
+              <Image
+                src="/image/logo-sasson.png"
+                alt="Logo La Sasson"
+                width={160}
+                height={50}
+                className={`h-12 w-auto ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+                onLoadingComplete={() => setImageLoaded(true)}
+                priority
+              />
+            </div>
             <h1 className={`text-xl mt-5 transition-all duration-500 ${isScrolled ? 'translate-y-[-60px]' : 'opacity-100'}`}
               style={{ fontFamily: 'Montserrat, sans-serif', fontWeight: 600 }}>
               <a href="#top">Informations RH</a>
@@ -166,12 +218,17 @@ export default function Navbar() {
           <div
             className={`absolute top-0 left-1/2 transform -translate-x-1/2 transition-all duration-500 ${isScrolled ? 'opacity-0 -translate-y-8' : 'opacity-100 translate-y-0'}`}
           >
+            {!imageLoaded && (
+              <div className="h-12 w-45 bg-gray-200 animate-pulse rounded" />
+            )}
             <Image
               src="/image/logo-sasson.png"
               alt="Logo La Sasson"
               width={180}
               height={50}
-              className="h-12 w-auto"
+              className={`h-12 w-auto ${imageLoaded ? 'opacity-100' : 'opacity-0 absolute'}`}
+              onLoadingComplete={() => setImageLoaded(true)}
+              priority
             />
           </div>
 

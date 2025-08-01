@@ -16,9 +16,15 @@ export default function SecondaryNav() {
   const currentSectionRef = useRef<number>(0);
   const [sections, setSections] = useState<HTMLElement[]>([]);
   const [activeButton, setActiveButton] = useState<'prev' | 'home' | 'next'>('home');
+  const [isMounted, setIsMounted] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const initTimeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
 
-  // Memoized section detection
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Memoized section detection avec retry
   const detectSections = useCallback(() => {
     const allSections = Array.from(document.querySelectorAll('[id^="section-"]'))
       .filter(el => /^section-\d+$/.test(el.id))
@@ -27,13 +33,30 @@ export default function SecondaryNav() {
         const numB = parseInt(b.id.split('-')[1]);
         return numA - numB;
       }) as HTMLElement[];
+
     setSections(allSections);
+
+    // Si aucune section n'est trouvée, retry après 300ms
+    if (allSections.length === 0) {
+      initTimeoutRef.current = setTimeout(() => {
+        detectSections();
+      }, 300);
+    }
   }, []);
 
-  // Initial sections detection
+  // Initial sections detection avec délai pour s'assurer que le DOM est prêt
   useEffect(() => {
-    detectSections();
-  }, [detectSections]);
+    if (!isMounted) return;
+    const initTimeout = setTimeout(() => {
+      detectSections();
+    }, 100);
+    return () => {
+      clearTimeout(initTimeout);
+      if (initTimeoutRef.current) {
+        clearTimeout(initTimeoutRef.current);
+      }
+    };
+  }, [detectSections, isMounted]);
 
   // Memoized navigation functions
   const scrollToTop = useCallback(() => {
@@ -58,13 +81,13 @@ export default function SecondaryNav() {
     }
   }, [sections, currentSection]);
 
-  // Optimized IntersectionObserver with debouncing
   useEffect(() => {
-    if (!sections.length) return;
-    // Disconnect previous observer
+    if (!sections.length || !isMounted) return;
+
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
+
     let timeoutId: NodeJS.Timeout;
     const debouncedCallback = (entries: IntersectionObserverEntry[]) => {
       clearTimeout(timeoutId);
@@ -95,7 +118,7 @@ export default function SecondaryNav() {
       clearTimeout(timeoutId);
       observerRef.current?.disconnect();
     };
-  }, [sections]);
+  }, [sections, isMounted]);
 
   // Memoized button states
   const buttonStates = useMemo(() => ({
@@ -171,6 +194,28 @@ export default function SecondaryNav() {
       </button>
     );
   };
+
+  if (!isMounted) {
+    return (
+      <div className="fixed w-full bottom-0 z-10">
+        <div className="w-full h-[55px] flex-shrink-0 bg-white/10 backdrop-blur-[17.5px]" />
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-15 bg-white rounded-xl px-5 py-2 gap-9 flex items-center justify-center shadow-[1px_3px_6px_rgba(0,0,0,0.25)]">
+          <div className="flex flex-col items-center justify-center w-10 h-10 rounded-full">
+            <ArrowLeft size={24} className="text-[var(--grey)]" />
+          </div>
+          <div className="flex flex-col items-center justify-center w-10 h-10 rounded-full py-1">
+            <Home size={24} className="text-[var(--color-primary)]" />
+            <span className="text-[8px] font-medium leading-none text-[var(--color-primary)] mt-[1px]">
+              home
+            </span>
+          </div>
+          <div className="flex flex-col items-center justify-center w-10 h-10 rounded-full">
+            <ArrowRight size={24} className="text-[var(--grey)]" />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="fixed w-full bottom-0 z-10">

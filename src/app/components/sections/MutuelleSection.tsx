@@ -9,7 +9,7 @@ export default async function MutuelleSection() {
     const mutuelleData: MutuelleType = await getMutuelle()
 
     if (!mutuelleData) return null
-
+    // console.log(mutuelleData)
     return (
         <section id="section-7" className="pt-19 px-5 md:px-10 lg:px-16">
             <h2 className="text-[18px] font-medium underline">{mutuelleData.title}</h2>
